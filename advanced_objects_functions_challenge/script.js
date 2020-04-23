@@ -32,9 +32,17 @@ Question.prototype.logQuestion = function () {
     console.log(this.question);
     for (var i = 0; i < this.answers.length; i++) {
         console.log(this.answers[i])
-
     }
 };
+
+Question.prototype.obtainUserAnswer = function () {
+    this.userAnswer = parseInt(prompt(this.question));
+};
+
+// Question.prototype.checkUserAnswer = function () {
+
+//     this.userAnswer ===
+// };
 
 question1 = new Question(
     'Is the World square?',
@@ -72,3 +80,4 @@ question3 = new Question(
 questions = [question1, question2, question3];
 currentQuestion = Math.floor(Math.random() * questions.length);
 questions[currentQuestion].logQuestion();
+questions[currentQuestion].obtainUserAnswer();
