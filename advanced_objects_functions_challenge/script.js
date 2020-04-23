@@ -19,7 +19,9 @@ c) correct answer (I would use a number for this)
 7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
 */
 
-var Question = function (question, answers, userAnswer, correctAnswer) {
+var Question, questions, question1, question2, question3, currentQuestion
+
+Question = function (question, answers, userAnswer, correctAnswer) {
     this.question = question;
     this.answers = answers;
     this.correctAnswer = correctAnswer;
@@ -34,7 +36,7 @@ Question.prototype.logQuestion = function () {
     }
 };
 
-var question1 = new Question(
+question1 = new Question(
     'Is the World square?',
     [
         '0: Yes',
@@ -44,7 +46,7 @@ var question1 = new Question(
     0
 );
 
-var question2 = new Question(
+question2 = new Question(
     'Which are the water\'s estates?',
     [
         '0: Liquid and Solid',
@@ -55,7 +57,7 @@ var question2 = new Question(
     2
 );
 
-var question3 = new Question(
+question3 = new Question(
     'What is the direction of Time',
     [
         '0: Back',
@@ -67,4 +69,6 @@ var question3 = new Question(
     1
 );
 
-var questions = [question1, question2, question3];
+questions = [question1, question2, question3];
+currentQuestion = Math.floor(Math.random() * questions.length);
+questions[currentQuestion].logQuestion();
