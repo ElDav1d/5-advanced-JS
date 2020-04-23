@@ -26,6 +26,14 @@ var Question = function (question, answers, userAnswer, correctAnswer) {
     this.userAnswer = userAnswer;
 };
 
+Question.prototype.logQuestion = function () {
+    console.log(this.question);
+    for (var i = 0; i < this.answers.length; i++) {
+        console.log(this.answers[i])
+
+    }
+};
+
 var question1 = new Question(
     'Is the World square?',
     [
