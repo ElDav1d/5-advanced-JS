@@ -39,10 +39,14 @@ Question.prototype.obtainUserAnswer = function () {
     this.userAnswer = parseInt(prompt(this.question));
 };
 
-// Question.prototype.checkUserAnswer = function () {
+Question.prototype.checkUserAnswer = function () {
+    if (this.userAnswer === this.correctAnswer) {
+        console.log('YES, IS CORRECT YOU SMARTY PANTS!');
 
-//     this.userAnswer ===
-// };
+    } else {
+        console.log('NO WAY, YOU SCIENTOLOGIST');
+    }
+};
 
 question1 = new Question(
     'Is the World square?',
@@ -51,7 +55,7 @@ question1 = new Question(
         '1: No'
     ],
     undefined,
-    0
+    1
 );
 
 question2 = new Question(
@@ -81,3 +85,4 @@ questions = [question1, question2, question3];
 currentQuestion = Math.floor(Math.random() * questions.length);
 questions[currentQuestion].logQuestion();
 questions[currentQuestion].obtainUserAnswer();
+questions[currentQuestion].checkUserAnswer();
