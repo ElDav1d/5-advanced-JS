@@ -49,13 +49,21 @@ c) correct answer (I would use a number for this)
     };
 
     Question.prototype.obtainUserAnswer = function () {
-        this.userAnswer = parseInt(prompt(this.question));
+        this.userAnswer = prompt(this.question);
+        if (this.userAnswer !== 'exit' || this.userAnswer !== 'EXIT') {
+            this.userAnswer = parseInt(this.userAnswer);
+        }
     };
 
     Question.prototype.checkUserAnswer = function () {
         if (this.userAnswer === this.correctAnswer) {
             console.log('YES, IS CORRECT YOU SMARTY PANTS!');
-
+        } else if (this.userAnswer > this.answers.length || this.userAnswer < 0) {
+            console.log('THERE AREN\'T ' + this.userAnswer + ' ANSWERS');
+        } else if (Number.isNaN(this.userAnswer)) {
+            console.log('PLEASE PLACE A NUMBER');
+        } else if (this.userAnswer === 'exit' || this.userAnswer === 'EXIT') {
+            console.log('YOU ARE EXITING THE QUIZ');
         } else {
             console.log('NO WAY, YOU SCIENTOLOGIST');
         }
@@ -97,7 +105,7 @@ c) correct answer (I would use a number for this)
     questions = [question1, question2, question3];
     currentQuestion = Math.floor(Math.random() * questions.length);
     questions[currentQuestion].logQuestion();
+    console.log('Please use a NUMBER for your asnwer. If you want to QUIT THE GAME enteR \'exit\' or \'EXIT\'');
     questions[currentQuestion].obtainUserAnswer();
     questions[currentQuestion].checkUserAnswer();
-
 })();
