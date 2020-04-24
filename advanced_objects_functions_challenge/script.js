@@ -32,7 +32,7 @@ c) correct answer (I would use a number for this)
 */
 
 (function () {
-    var Question, questions, question1, question2, question3, currentQuestion, playing
+    var Question, questions, question1, question2, question3, currentQuestion, playing, score
 
     Question = function (question, answers, userAnswer, correctAnswer) {
         this.question = question;
@@ -59,6 +59,7 @@ c) correct answer (I would use a number for this)
     Question.prototype.checkUserAnswer = function () {
         if (this.userAnswer === this.correctAnswer) {
             console.log('YES, IS CORRECT YOU SMARTY PANTS!');
+            score += 1;
         } else if (this.userAnswer > this.answers.length || this.userAnswer < 0) {
             console.log('THERE AREN\'T ' + this.userAnswer + ' ANSWERS.');
         } else if (this.userAnswer === 'exit' || this.userAnswer === 'EXIT') {
@@ -69,6 +70,7 @@ c) correct answer (I would use a number for this)
         } else {
             console.log('NO WAY, YOU SCIENTOLOGIST');
         }
+        console.log('SCORE: ' + score + ' POINTS')
     };
 
     question1 = new Question(
@@ -104,10 +106,10 @@ c) correct answer (I would use a number for this)
         1
     );
 
+    score = 0;
+    play();
 
-    init();
-
-    function init() {
+    function play() {
         if (playing === false) { return }
 
         questions = [question1, question2, question3];
@@ -118,6 +120,6 @@ c) correct answer (I would use a number for this)
         questions[currentQuestion].logQuestion();
         questions[currentQuestion].obtainUserAnswer();
         questions[currentQuestion].checkUserAnswer();
-        init();
+        play();
     }
 })();
