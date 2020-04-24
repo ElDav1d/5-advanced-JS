@@ -44,7 +44,7 @@ c) correct answer (I would use a number for this)
     Question.prototype.logQuestion = function () {
         console.log(this.question);
         for (var i = 0; i < this.answers.length; i++) {
-            console.log(this.answers[i])
+            console.log(this.answers[i]);
         }
     };
 
