@@ -114,7 +114,7 @@ c) correct answer (I would use a number for this)
         playing = true;
         currentQuestion = Math.floor(Math.random() * questions.length);
 
-        console.log('Please use a NUMBER for your asnwer. If you want to QUIT THE GAME enter \'exit\' or \'EXIT\'');
+        console.log('Please use a NUMBER for your answer. If you want to QUIT THE GAME enter \'exit\' or \'EXIT\'');
         questions[currentQuestion].logQuestion();
         questions[currentQuestion].obtainUserAnswer();
         questions[currentQuestion].checkUserAnswer();
