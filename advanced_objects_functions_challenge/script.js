@@ -70,8 +70,11 @@ c) correct answer (I would use a number for this)
         } else {
             console.log('NO WAY, YOU SCIENTOLOGIST');
         }
-        console.log('SCORE: ' + score + ' POINTS')
     };
+
+    Question.prototype.logScore = function () {
+        console.log('SCORE: ' + score + ' POINTS');
+    }
 
     question1 = new Question(
         'Is the World square?',
@@ -120,6 +123,7 @@ c) correct answer (I would use a number for this)
         questions[currentQuestion].logQuestion();
         questions[currentQuestion].obtainUserAnswer();
         questions[currentQuestion].checkUserAnswer();
+        questions[currentQuestion].logScore();
         play();
     }
 })();
