@@ -32,13 +32,13 @@ c) correct answer (I would use a number for this)
 */
 
 (function () {
-    var Question, questions, question1, question2, question3, currentQuestion
+    var Question, questions, question1, question2, question3, currentQuestion, playing
 
     Question = function (question, answers, userAnswer, correctAnswer) {
         this.question = question;
         this.answers = answers;
-        this.correctAnswer = correctAnswer;
         this.userAnswer = userAnswer;
+        this.correctAnswer = correctAnswer;
     };
 
     Question.prototype.logQuestion = function () {
@@ -50,20 +50,22 @@ c) correct answer (I would use a number for this)
 
     Question.prototype.obtainUserAnswer = function () {
         this.userAnswer = prompt(this.question);
-        if (this.userAnswer !== 'exit' || this.userAnswer !== 'EXIT') {
-            this.userAnswer = parseInt(this.userAnswer);
+        if (this.userAnswer === 'exit' || this.userAnswer === 'EXIT') {
+            return
         }
+        this.userAnswer = parseInt(this.userAnswer);
     };
 
     Question.prototype.checkUserAnswer = function () {
         if (this.userAnswer === this.correctAnswer) {
             console.log('YES, IS CORRECT YOU SMARTY PANTS!');
         } else if (this.userAnswer > this.answers.length || this.userAnswer < 0) {
-            console.log('THERE AREN\'T ' + this.userAnswer + ' ANSWERS');
-        } else if (Number.isNaN(this.userAnswer)) {
-            console.log('PLEASE PLACE A NUMBER');
+            console.log('THERE AREN\'T ' + this.userAnswer + ' ANSWERS.');
         } else if (this.userAnswer === 'exit' || this.userAnswer === 'EXIT') {
-            console.log('YOU ARE EXITING THE QUIZ');
+            playing = false;
+            console.log('YOU ARE EXITING THE QUIZ. Refresh your browser to start again.');
+        } else if (Number.isNaN(this.userAnswer)) {
+            console.log('PLEASE PUT A NUMBER');
         } else {
             console.log('NO WAY, YOU SCIENTOLOGIST');
         }
@@ -102,10 +104,20 @@ c) correct answer (I would use a number for this)
         1
     );
 
-    questions = [question1, question2, question3];
-    currentQuestion = Math.floor(Math.random() * questions.length);
-    questions[currentQuestion].logQuestion();
-    console.log('Please use a NUMBER for your asnwer. If you want to QUIT THE GAME enteR \'exit\' or \'EXIT\'');
-    questions[currentQuestion].obtainUserAnswer();
-    questions[currentQuestion].checkUserAnswer();
+
+    init();
+
+    function init() {
+        if (playing === false) { return }
+
+        questions = [question1, question2, question3];
+        playing = true;
+        currentQuestion = Math.floor(Math.random() * questions.length);
+
+        console.log('Please use a NUMBER for your asnwer. If you want to QUIT THE GAME enter \'exit\' or \'EXIT\'');
+        questions[currentQuestion].logQuestion();
+        questions[currentQuestion].obtainUserAnswer();
+        questions[currentQuestion].checkUserAnswer();
+        init();
+    }
 })();
